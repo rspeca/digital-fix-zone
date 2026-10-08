@@ -28,11 +28,11 @@ const NAV_LINKS = [
 
 function Logo() {
   return (
-    <Link to="/" className="flex items-center gap-2">
-      <div className="size-9 rounded-xl bg-primary grid place-items-center text-primary-foreground font-extrabold text-sm shadow-lg shadow-primary/30">
+    <Link to="/" className="flex items-center gap-3">
+      <div className="size-14 rounded-2xl bg-primary grid place-items-center text-primary-foreground font-extrabold text-2xl shadow-lg shadow-primary/30">
         TF
       </div>
-      <span className="font-extrabold tracking-tight text-foreground">
+      <span className="font-extrabold tracking-tight text-foreground text-3xl">
         Tecno<span className="text-primary">Fix</span>
       </span>
     </Link>
