@@ -13,10 +13,14 @@ import { Menu, X, MessageCircle, Instagram, Facebook } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-
-export const WHATSAPP_URL = "https://wa.me/5519982497244";
-export const INSTAGRAM_URL = "https://instagram.com/tecno.fix";
-export const FACEBOOK_URL = "https://facebook.com/TecnoFix";
+import { ExternalLink } from "@/components/external-link";
+import { Toaster } from "@/components/ui/sonner";
+import {
+  WHATSAPP_URL,
+  WHATSAPP_NUMBER,
+  INSTAGRAM_URL,
+  FACEBOOK_URL,
+} from "@/lib/contact";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
@@ -60,14 +64,14 @@ function Header() {
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <a
+          <ExternalLink
             href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            fallbackHint={`Adicione ${WHATSAPP_NUMBER} e chame no WhatsApp.`}
+            copyOnBlock={WHATSAPP_NUMBER}
             className="hidden sm:inline-flex px-4 py-2 rounded-xl bg-foreground text-background text-sm font-semibold hover:bg-primary transition-colors"
           >
             Orçamento
-          </a>
+          </ExternalLink>
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden p-2 rounded-lg text-foreground"
@@ -103,30 +107,26 @@ function Footer() {
       <div className="frost rounded-2xl px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
         <span>© 2026 TecnoFix — Manutenção de Computadores</span>
         <div className="flex gap-5 font-medium">
-          <a
+          <ExternalLink
             href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            fallbackHint={`Adicione ${WHATSAPP_NUMBER} e chame no WhatsApp.`}
+            copyOnBlock={WHATSAPP_NUMBER}
             className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"
           >
             <MessageCircle className="size-4" /> WhatsApp
-          </a>
-          <a
+          </ExternalLink>
+          <ExternalLink
             href={INSTAGRAM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"
           >
             <Instagram className="size-4" /> Instagram
-          </a>
-          <a
+          </ExternalLink>
+          <ExternalLink
             href={FACEBOOK_URL}
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"
           >
             <Facebook className="size-4" /> Facebook
-          </a>
+          </ExternalLink>
         </div>
       </div>
     </footer>
@@ -267,6 +267,7 @@ function RootComponent() {
           <Outlet />
         </main>
         <Footer />
+        <Toaster position="bottom-center" richColors />
       </div>
     </QueryClientProvider>
   );
