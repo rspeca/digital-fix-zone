@@ -1,7 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MessageCircle, Instagram, Facebook } from "lucide-react";
 import heroImage from "@/assets/hero-workbench.jpg";
-import { WHATSAPP_URL, INSTAGRAM_URL, FACEBOOK_URL } from "./__root";
+import { ExternalLink } from "@/components/external-link";
+import {
+  WHATSAPP_URL,
+  WHATSAPP_NUMBER,
+  INSTAGRAM_URL,
+  FACEBOOK_URL,
+} from "@/lib/contact";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -68,14 +74,14 @@ function HomePage() {
             Diagnóstico honesto e entrega no prazo — sem enrolação.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <a
+            <ExternalLink
               href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              fallbackHint={`Adicione ${WHATSAPP_NUMBER} e chame no WhatsApp.`}
+              copyOnBlock={WHATSAPP_NUMBER}
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-primary text-primary-foreground font-semibold shadow-xl shadow-primary/25 hover:bg-primary/90 transition"
             >
               <MessageCircle className="size-5" /> Falar no WhatsApp
-            </a>
+            </ExternalLink>
             <Link
               to="/servicos"
               className="inline-flex items-center px-6 py-3.5 rounded-2xl frost font-semibold text-foreground hover:bg-white/80 transition"
@@ -217,30 +223,26 @@ function HomePage() {
               para dicas de manutenção e ofertas.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a
+              <ExternalLink
                 href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                fallbackHint={`Adicione ${WHATSAPP_NUMBER} e chame no WhatsApp.`}
+                copyOnBlock={WHATSAPP_NUMBER}
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/25 hover:bg-primary/90 transition"
               >
                 <MessageCircle className="size-4" /> WhatsApp 19 98249-7244
-              </a>
-              <a
+              </ExternalLink>
+              <ExternalLink
                 href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl frost font-semibold text-foreground hover:bg-white/80 transition"
               >
                 <Instagram className="size-4" /> Instagram
-              </a>
-              <a
+              </ExternalLink>
+              <ExternalLink
                 href={FACEBOOK_URL}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl frost font-semibold text-foreground hover:bg-white/80 transition"
               >
                 <Facebook className="size-4" /> Facebook
-              </a>
+              </ExternalLink>
             </div>
           </div>
           <div className="frost rounded-2xl p-6">

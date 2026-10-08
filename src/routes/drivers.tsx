@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Download, MessageCircle, Info } from "lucide-react";
-import { WHATSAPP_URL } from "./__root";
+import { ExternalLink } from "@/components/external-link";
+import { WHATSAPP_URL, WHATSAPP_NUMBER } from "@/lib/contact";
 
 export const Route = createFileRoute("/drivers")({
   head: () => ({
@@ -117,11 +118,9 @@ function DriversPage() {
             </div>
             <div className="space-y-2">
               {group.drivers.map((d) => (
-                <a
+                <ExternalLink
                   key={d.name}
                   href={d.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="flex items-center justify-between gap-3 py-3 px-4 rounded-xl chip hover:bg-white/80 transition group"
                 >
                   <div>
@@ -135,7 +134,7 @@ function DriversPage() {
                   <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
                     <Download className="size-4" /> Baixar
                   </span>
-                </a>
+                </ExternalLink>
               ))}
             </div>
           </div>
@@ -149,14 +148,14 @@ function DriversPage() {
         <p className="mt-2 text-muted-foreground">
           Instalamos e configuramos todos os drivers para você.
         </p>
-        <a
+        <ExternalLink
           href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          fallbackHint={`Adicione ${WHATSAPP_NUMBER} e chame no WhatsApp.`}
+          copyOnBlock={WHATSAPP_NUMBER}
           className="mt-5 inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/25 hover:bg-primary/90 transition"
         >
           <MessageCircle className="size-5" /> Falar no WhatsApp
-        </a>
+        </ExternalLink>
       </div>
     </div>
   );

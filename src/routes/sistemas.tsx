@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Download, MessageCircle, Info } from "lucide-react";
-import { WHATSAPP_URL } from "./__root";
+import { ExternalLink } from "@/components/external-link";
+import { WHATSAPP_URL, WHATSAPP_NUMBER } from "@/lib/contact";
 
 export const Route = createFileRoute("/sistemas")({
   head: () => ({
@@ -100,14 +101,12 @@ function SistemasPage() {
               </div>
             </div>
             <p className="text-sm text-muted-foreground">{s.text}</p>
-            <a
+            <ExternalLink
               href={s.url}
-              target="_blank"
-              rel="noopener noreferrer"
               className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-foreground text-background text-sm font-semibold hover:bg-primary transition"
             >
               <Download className="size-4" /> Baixar {s.name}
-            </a>
+            </ExternalLink>
           </div>
         ))}
       </div>
@@ -120,14 +119,14 @@ function SistemasPage() {
           Instalamos o sistema, salvamos seus arquivos e deixamos tudo pronto
           para usar.
         </p>
-        <a
+        <ExternalLink
           href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          fallbackHint={`Adicione ${WHATSAPP_NUMBER} e chame no WhatsApp.`}
+          copyOnBlock={WHATSAPP_NUMBER}
           className="mt-5 inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/25 hover:bg-primary/90 transition"
         >
           <MessageCircle className="size-5" /> Agendar formatação
-        </a>
+        </ExternalLink>
       </div>
     </div>
   );
