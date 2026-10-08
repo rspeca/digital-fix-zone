@@ -1,6 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MessageCircle, Instagram, Facebook, Clock, MapPin } from "lucide-react";
-import { WHATSAPP_URL, INSTAGRAM_URL, FACEBOOK_URL } from "./__root";
+import { ExternalLink } from "@/components/external-link";
+import {
+  WHATSAPP_URL,
+  WHATSAPP_NUMBER,
+  INSTAGRAM_URL,
+  FACEBOOK_URL,
+} from "@/lib/contact";
 
 export const Route = createFileRoute("/contato")({
   head: () => ({
@@ -37,10 +43,10 @@ function ContatoPage() {
       </p>
 
       <div className="grid md:grid-cols-3 gap-5 mt-10">
-        <a
+        <ExternalLink
           href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          fallbackHint={`Adicione ${WHATSAPP_NUMBER} e chame no WhatsApp.`}
+          copyOnBlock={WHATSAPP_NUMBER}
           className="frost-strong rounded-2xl p-6 hover:bg-white/90 transition group"
         >
           <div className="size-12 rounded-xl bg-primary text-primary-foreground grid place-items-center">
@@ -54,11 +60,9 @@ function ContatoPage() {
           <span className="mt-4 inline-block text-sm font-semibold text-primary group-hover:underline">
             (19) 98249-7244 →
           </span>
-        </a>
-        <a
+        </ExternalLink>
+        <ExternalLink
           href={INSTAGRAM_URL}
-          target="_blank"
-          rel="noopener noreferrer"
           className="frost-strong rounded-2xl p-6 hover:bg-white/90 transition group"
         >
           <div className="size-12 rounded-xl bg-cyan-accent text-primary-foreground grid place-items-center">
@@ -71,11 +75,9 @@ function ContatoPage() {
           <span className="mt-4 inline-block text-sm font-semibold text-primary group-hover:underline">
             @tecno.fix →
           </span>
-        </a>
-        <a
+        </ExternalLink>
+        <ExternalLink
           href={FACEBOOK_URL}
-          target="_blank"
-          rel="noopener noreferrer"
           className="frost-strong rounded-2xl p-6 hover:bg-white/90 transition group"
         >
           <div className="size-12 rounded-xl bg-sky-accent text-primary-foreground grid place-items-center">
@@ -88,7 +90,7 @@ function ContatoPage() {
           <span className="mt-4 inline-block text-sm font-semibold text-primary group-hover:underline">
             /TecnoFix →
           </span>
-        </a>
+        </ExternalLink>
       </div>
 
       <div className="grid md:grid-cols-2 gap-5 mt-8">
