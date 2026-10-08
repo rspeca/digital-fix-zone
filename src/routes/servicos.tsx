@@ -8,7 +8,8 @@ import {
   Wifi,
   MessageCircle,
 } from "lucide-react";
-import { WHATSAPP_URL } from "./__root";
+import { ExternalLink } from "@/components/external-link";
+import { WHATSAPP_URL, WHATSAPP_NUMBER } from "@/lib/contact";
 
 export const Route = createFileRoute("/servicos")({
   head: () => ({
@@ -124,14 +125,14 @@ function ServicosPage() {
         <p className="mt-2 text-muted-foreground max-w-md mx-auto">
           Chame no WhatsApp e descreva o problema — a gente encontra a solução.
         </p>
-        <a
+        <ExternalLink
           href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          fallbackHint={`Adicione ${WHATSAPP_NUMBER} e chame no WhatsApp.`}
+          copyOnBlock={WHATSAPP_NUMBER}
           className="mt-6 inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-primary text-primary-foreground font-semibold shadow-xl shadow-primary/25 hover:bg-primary/90 transition"
         >
           <MessageCircle className="size-5" /> Pedir orçamento gratuito
-        </a>
+        </ExternalLink>
       </div>
     </div>
   );
