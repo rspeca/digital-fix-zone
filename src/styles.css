@@ -145,3 +145,41 @@
     oklch(0.93 0.05 215) 100%
   );
 }
+
+/* ============================================================
+   Ocultar completamente o selo "Made with Lovable"
+   (injetado nas publicações). Cobre id, custom element,
+   container, iframe e o link flutuante.
+   ============================================================ */
+#lovable-badge,
+#lovable-badge-container,
+#lovable-badge-wrapper,
+lovable-badge,
+[data-lovable-badge],
+[id*="lovable-badge"],
+[class*="lovable-badge"],
+[class*="lovable-badge" i],
+iframe[title*="lovable" i],
+iframe[src*="badge"][src*="lovable" i],
+a[href*="lovable.dev"][style*="fixed" i],
+div[style*="z-index"][style*="9999"] > a[href*="lovable.dev"],
+a[target="_blank"][href*="lovable.dev"][aria-label*="Lovable" i] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+/* O selo também pode vir como elemento fixo no canto da tela. */
+body > [id*="lovable" i]:not(#app):not(#root),
+body > [class*="lovable" i]:not(#app):not(#root) {
+  display: none !important;
+}
