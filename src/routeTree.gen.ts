@@ -14,6 +14,7 @@ import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as DriversRouteImport } from './routes/drivers'
 import { Route as ServicosRouteImport } from './routes/servicos'
 import { Route as SistemasRouteImport } from './routes/sistemas'
+import { Route as AdminRouteImport } from './routes/admin'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const SistemasRoute = SistemasRouteImport.update({
   path: '/sistemas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/drivers': typeof DriversRoute
   '/servicos': typeof ServicosRoute
   '/sistemas': typeof SistemasRoute
+  '/admin': typeof AdminRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -65,10 +72,10 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contato' | '/drivers' | '/servicos' | '/sistemas'
+  fullPaths: '/' | '/contato' | '/drivers' | '/servicos' | '/sistemas' | '/admin'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contato' | '/drivers' | '/servicos' | '/sistemas'
-  id: '__root__' | '/' | '/contato' | '/drivers' | '/servicos' | '/sistemas'
+  to: '/' | '/contato' | '/drivers' | '/servicos' | '/sistemas' | '/admin'
+  id: '__root__' | '/' | '/contato' | '/drivers' | '/servicos' | '/sistemas' | '/admin'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +84,7 @@ export interface RootRouteChildren {
   DriversRoute: typeof DriversRoute
   ServicosRoute: typeof ServicosRoute
   SistemasRoute: typeof SistemasRoute
+  AdminRoute: typeof AdminRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +124,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SistemasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +140,7 @@ const rootRouteChildren: RootRouteChildren = {
   DriversRoute: DriversRoute,
   ServicosRoute: ServicosRoute,
   SistemasRoute: SistemasRoute,
+  AdminRoute: AdminRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
