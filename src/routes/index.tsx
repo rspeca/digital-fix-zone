@@ -7,13 +7,13 @@ import { useSiteSettings, whatsappHref } from "@/lib/site-settings";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "TecnoFix — Manutenção de Computadores" },
+      { title: "Digital Fix Zone — Manutenção de Computadores" },
       {
         name: "description",
         content:
           "Seu computador voltando ao ritmo: manutenção completa, troca de peças, limpeza interna e formatação. Diagnóstico honesto e entrega no prazo.",
       },
-      { property: "og:title", content: "TecnoFix — Manutenção de Computadores" },
+      { property: "og:title", content: "Digital Fix Zone — Manutenção de Computadores" },
       {
         property: "og:description",
         content:
@@ -61,15 +61,13 @@ function HomePage() {
       <section className="grid md:grid-cols-2 gap-10 items-center pt-14 pb-8">
         <div>
           <span className="chip inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-primary">
-            ● Atendimento rápido em Campinas
+            ● {settings.heroBadge} · {settings.serviceArea}
           </span>
           <h1 className="mt-5 text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.03] text-foreground">
-            Seu computador <span className="text-primary">voltando</span> ao
-            ritmo.
+            {settings.heroTitle}
           </h1>
           <p className="mt-5 text-lg text-muted-foreground max-w-md">
-            Manutenção completa, troca de peças, limpeza interna e formatação.
-            Diagnóstico honesto e entrega no prazo — sem enrolação.
+            {settings.heroSubtitle}
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <ExternalLink
@@ -212,11 +210,10 @@ function HomePage() {
               ● Fale conosco
             </span>
             <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground">
-              Vamos resolver seu problema.
+              {settings.contactTitle}
             </h2>
             <p className="mt-3 text-muted-foreground max-w-sm">
-              Chame no WhatsApp para um diagnóstico rápido ou siga a TecnoFix
-              para dicas de manutenção e ofertas.
+              {settings.contactText}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <ExternalLink

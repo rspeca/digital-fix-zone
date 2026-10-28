@@ -10,13 +10,13 @@ export const Route = createFileRoute("/contato")({
       {
         name: "description",
         content:
-          "Fale com a TecnoFix pelo WhatsApp (19) 98249-7244, Instagram ou Facebook. Diagnóstico rápido e orçamento sem compromisso.",
+          "Fale conosco pelo WhatsApp, Instagram ou Facebook. Diagnóstico rápido e orçamento sem compromisso.",
       },
       { property: "og:title", content: "Fale Conosco — TecnoFix" },
       {
         property: "og:description",
         content:
-          "WhatsApp (19) 98249-7244, Instagram e Facebook. Diagnóstico rápido e orçamento sem compromisso.",
+          "WhatsApp, Instagram e Facebook. Diagnóstico rápido e orçamento sem compromisso.",
       },
     ],
   }),
@@ -123,7 +123,7 @@ function ContatoPage() {
             <div className="flex justify-between border-b border-border pb-2">
               <span className="text-muted-foreground">Região</span>
               <span className="font-semibold text-foreground">
-                Campinas e região
+                {settings.serviceArea}
               </span>
             </div>
             <div className="flex justify-between border-b border-border pb-2">
