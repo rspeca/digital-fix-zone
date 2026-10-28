@@ -47,23 +47,23 @@
   --card-foreground: oklch(0.21 0.04 265);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.21 0.04 265);
-  --primary: oklch(0.55 0.21 262);
+  --primary: #16A34A;
   --primary-foreground: oklch(0.985 0.005 250);
-  --secondary: oklch(0.95 0.02 250);
+  --secondary: #F0FDF4;
   --secondary-foreground: oklch(0.21 0.04 265);
-  --muted: oklch(0.95 0.02 250);
+  --muted: #F0FDF4;
   --muted-foreground: oklch(0.55 0.03 260);
-  --accent: oklch(0.95 0.02 250);
+  --accent: #DCFCE7;
   --accent-foreground: oklch(0.21 0.04 265);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0.005 250);
   --border: oklch(0.92 0.01 255);
   --input: oklch(0.92 0.01 255);
-  --ring: oklch(0.55 0.21 262);
-  --brand: oklch(0.55 0.21 262);
-  --brand-soft: oklch(0.94 0.04 262);
-  --cyan-accent: oklch(0.72 0.14 210);
-  --sky-accent: oklch(0.65 0.13 230);
+  --ring: #16A34A;
+  --brand: #16A34A;
+  --brand-soft: #DCFCE7;
+  --cyan-accent: #4ADE80;
+  --sky-accent: #15803D;
 }
 
 .dark {
@@ -73,21 +73,21 @@
   --card-foreground: oklch(0.97 0.005 250);
   --popover: oklch(0.21 0.04 265);
   --popover-foreground: oklch(0.97 0.005 250);
-  --primary: oklch(0.65 0.18 262);
+  --primary: #22C55E;
   --primary-foreground: oklch(0.16 0.03 265);
-  --secondary: oklch(0.26 0.03 262);
+  --secondary: #14532D;
   --secondary-foreground: oklch(0.97 0.005 250);
-  --muted: oklch(0.26 0.03 262);
+  --muted: #14532D;
   --muted-foreground: oklch(0.7 0.03 260);
-  --accent: oklch(0.26 0.03 262);
+  --accent: #166534;
   --accent-foreground: oklch(0.97 0.005 250);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.97 0.005 250);
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.65 0.18 262);
-  --brand: oklch(0.65 0.18 262);
-  --brand-soft: oklch(0.28 0.05 262);
+  --ring: #22C55E;
+  --brand: #22C55E;
+  --brand-soft: #14532D;
   --cyan-accent: oklch(0.72 0.14 210);
   --sky-accent: oklch(0.65 0.13 230);
 }
@@ -139,10 +139,10 @@
 @utility page-gradient {
   background: radial-gradient(
     120% 120% at 10% -10%,
-    oklch(0.95 0.03 275) 0%,
-    oklch(0.985 0.005 250) 38%,
-    oklch(0.965 0.03 220) 75%,
-    oklch(0.93 0.05 215) 100%
+    #DCFCE7 0%,
+    #F0FDF4 38%,
+    #BBF7D0 75%,
+     #86EFAC 100%
   );
 }
 
