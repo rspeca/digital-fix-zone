@@ -9,7 +9,7 @@ import {
   type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
-import { Menu, X, MessageCircle, Instagram, Facebook } from "lucide-react";
+import { Menu, X, MessageCircle, Instagram, Facebook, MonitorCog } from "lucide-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -32,9 +32,9 @@ const NAV_LINKS = [
 
 function Logo() {
   return (
-    <Link to="/" className="flex items-center">
-      <span className="font-extrabold tracking-tight text-foreground text-3xl">
-        Tecno<span className="text-primary">Fix</span>
+    <Link to="/" className="flex items-center" aria-label="Página inicial">
+      <span className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+        <MonitorCog className="size-6" aria-hidden="true" />
       </span>
     </Link>
   );
