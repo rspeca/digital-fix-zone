@@ -36,8 +36,7 @@ function ContatoPage() {
         Vamos resolver <span className="text-primary">seu problema.</span>
       </h1>
       <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
-        Chame no WhatsApp para um diagnóstico rápido ou siga a TecnoFix nas
-        redes sociais para dicas de manutenção e ofertas.
+        {settings.contactText}
       </p>
 
       <div className="grid md:grid-cols-3 gap-5 mt-10">
