@@ -1,12 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MessageCircle, Instagram, Facebook, Clock, MapPin } from "lucide-react";
 import { ExternalLink } from "@/components/external-link";
-import {
-  WHATSAPP_URL,
-  WHATSAPP_NUMBER,
-  INSTAGRAM_URL,
-  FACEBOOK_URL,
-} from "@/lib/contact";
+import { useSiteSettings, whatsappHref } from "@/lib/site-settings";
 
 export const Route = createFileRoute("/contato")({
   head: () => ({
@@ -29,6 +24,9 @@ export const Route = createFileRoute("/contato")({
 });
 
 function ContatoPage() {
+  const settings = useSiteSettings();
+  const number = settings.whatsapp || "19982497244";
+  const whatsapp = whatsappHref(number);
   return (
     <div className="max-w-6xl mx-auto px-6 pt-14 pb-8">
       <span className="chip inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-primary">
@@ -44,9 +42,7 @@ function ContatoPage() {
 
       <div className="grid md:grid-cols-3 gap-5 mt-10">
         <ExternalLink
-          href={WHATSAPP_URL}
-          fallbackHint={`Adicione ${WHATSAPP_NUMBER} e chame no WhatsApp.`}
-          copyOnBlock={WHATSAPP_NUMBER}
+          href={whatsapp} fallbackHint={`Adicione ${number} e chame no WhatsApp.`} copyOnBlock={number}
           className="frost-strong rounded-2xl p-6 hover:bg-white/90 transition group"
         >
           <div className="size-12 rounded-xl bg-primary text-primary-foreground grid place-items-center">
@@ -58,11 +54,11 @@ function ContatoPage() {
             comercial.
           </p>
           <span className="mt-4 inline-block text-sm font-semibold text-primary group-hover:underline">
-            (19) 98249-7244 →
+            {number} →
           </span>
         </ExternalLink>
         <ExternalLink
-          href={INSTAGRAM_URL}
+          href={settings.instagram || "https://instagram.com/tecno.fix"}
           className="frost-strong rounded-2xl p-6 hover:bg-white/90 transition group"
         >
           <div className="size-12 rounded-xl bg-cyan-accent text-primary-foreground grid place-items-center">
@@ -77,7 +73,7 @@ function ContatoPage() {
           </span>
         </ExternalLink>
         <ExternalLink
-          href={FACEBOOK_URL}
+          href={settings.facebook || "https://facebook.com/TecnoFix"}
           className="frost-strong rounded-2xl p-6 hover:bg-white/90 transition group"
         >
           <div className="size-12 rounded-xl bg-sky-accent text-primary-foreground grid place-items-center">
