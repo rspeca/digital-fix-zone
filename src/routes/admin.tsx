@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, CheckCircle2, Download, Eye, EyeOff, ImagePlus, Link2, LoaderCircle, LogOut, MonitorCog, Plus, Save, ShieldCheck, ShieldAlert, Trash2, Upload, UserRound } from "lucide-react";
 import { DEFAULT_SITE_SETTINGS, getAdminSession, isDatabaseConfigured, loadSiteSettings, saveSiteSettings, signInAdmin, signOutAdmin, verifyAdmin, type SiteSettings } from "@/lib/site-settings";
@@ -37,11 +37,11 @@ function AdminPage() {
     return () => { active = false; };
   }, []);
 
-  const update = <K extends keyof SiteSettings>(key: K, value: SiteSettings[K]) => {
+  const update = <K extends keyof SiteSettings,>(key: K, value: SiteSettings[K]) => {
     setSettings((current) => ({ ...current, [key]: value }));
     setMessage("");
   };
-  const login = async (event: React.FormEvent<HTMLFormElement>) => {
+  const login = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault(); setBusy(true); setError(""); setMessage("");
     try {
       await signInAdmin(email.trim(), password);
