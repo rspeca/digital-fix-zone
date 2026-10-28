@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Download, MessageCircle, Info } from "lucide-react";
 import { ExternalLink } from "@/components/external-link";
-import { WHATSAPP_URL, WHATSAPP_NUMBER } from "@/lib/contact";
+import { useSiteSettings, whatsappHref } from "@/lib/site-settings";
 
 export const Route = createFileRoute("/sistemas")({
   head: () => ({
@@ -59,6 +59,10 @@ const SYSTEMS = [
 ];
 
 function SistemasPage() {
+  const settings = useSiteSettings();
+  const number = settings.whatsapp || "19982497244";
+  const whatsapp = whatsappHref(number);
+  const customSystems = settings.isoLinks || [];
   return (
     <div className="max-w-6xl mx-auto px-6 pt-14 pb-8">
       <span className="chip inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold text-primary">
@@ -85,7 +89,7 @@ function SistemasPage() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-5 mt-8">
-        {SYSTEMS.map((s) => (
+        {[...SYSTEMS, ...customSystems.map((item) => ({name:item.name,badge:"Download",color:"bg-primary text-primary-foreground",text:item.description || "Link adicionado pelo administrador.",url:item.url,size:"Link externo"}))].map((s) => (
           <div key={s.name} className="frost-strong rounded-2xl p-6">
             <div className="flex items-center gap-3 mb-3">
               <div
@@ -120,9 +124,7 @@ function SistemasPage() {
           para usar.
         </p>
         <ExternalLink
-          href={WHATSAPP_URL}
-          fallbackHint={`Adicione ${WHATSAPP_NUMBER} e chame no WhatsApp.`}
-          copyOnBlock={WHATSAPP_NUMBER}
+          href={whatsapp} fallbackHint={`Adicione ${number} e chame no WhatsApp.`} copyOnBlock={number}
           className="mt-5 inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/25 hover:bg-primary/90 transition"
         >
           <MessageCircle className="size-5" /> Agendar formatação

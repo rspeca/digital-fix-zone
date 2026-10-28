@@ -61,6 +61,7 @@ export interface FileRoutesByTo {
   '/drivers': typeof DriversRoute
   '/servicos': typeof ServicosRoute
   '/sistemas': typeof SistemasRoute
+  '/admin': typeof AdminRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,6 +70,7 @@ export interface FileRoutesById {
   '/drivers': typeof DriversRoute
   '/servicos': typeof ServicosRoute
   '/sistemas': typeof SistemasRoute
+  '/admin': typeof AdminRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath

@@ -1,0 +1,7 @@
+import {useEffect,useState} from "react";
+export type SiteSettings={siteName:string;logoUrl:string;heroImageUrl:string;whatsapp:string;instagram:string;facebook:string;isoLinks:{name:string;url:string;description?:string}[]};
+export const DEFAULT_SITE_SETTINGS:SiteSettings={siteName:"Digital Fix Zone",logoUrl:"",heroImageUrl:"",whatsapp:"19982497244",instagram:"https://instagram.com/tecno.fix",facebook:"https://facebook.com/TecnoFix",isoLinks:[]};
+export function readSiteSettings():SiteSettings{if(typeof window==="undefined")return DEFAULT_SITE_SETTINGS;try{const v=JSON.parse(localStorage.getItem("dfz-site-settings")||"{}");return {...DEFAULT_SITE_SETTINGS,...v,isoLinks:Array.isArray(v.isoLinks)?v.isoLinks:[]}}catch{return DEFAULT_SITE_SETTINGS}}
+export function saveSiteSettings(v:SiteSettings){localStorage.setItem("dfz-site-settings",JSON.stringify(v));window.dispatchEvent(new Event("dfz-site-settings-updated"))}
+export function useSiteSettings(){const [v,setV]=useState(DEFAULT_SITE_SETTINGS);useEffect(()=>{const f=()=>setV(readSiteSettings());f();window.addEventListener("storage",f);window.addEventListener("dfz-site-settings-updated",f);return()=>{window.removeEventListener("storage",f);window.removeEventListener("dfz-site-settings-updated",f)}},[]);return v}
+export function whatsappHref(n:string){const d=n.replace(/\D/g,"");return "https://wa.me/"+(d.startsWith("55")?d:"55"+d)}

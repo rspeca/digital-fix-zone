@@ -15,12 +15,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ExternalLink } from "@/components/external-link";
 import { Toaster } from "@/components/ui/sonner";
-import {
-  WHATSAPP_URL,
-  WHATSAPP_NUMBER,
-  INSTAGRAM_URL,
-  FACEBOOK_URL,
-} from "@/lib/contact";
+import { useSiteSettings, whatsappHref } from "@/lib/site-settings";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
@@ -31,17 +26,19 @@ const NAV_LINKS = [
 ] as const;
 
 function Logo() {
+  const settings = useSiteSettings();
   return (
     <Link to="/" className="flex items-center" aria-label="Página inicial">
-      <span className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-        <MonitorCog className="size-6" aria-hidden="true" />
-      </span>
+      {settings.logoUrl ? <img src={settings.logoUrl} alt={settings.siteName} className="h-10 max-w-40 object-contain" /> : <span className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><MonitorCog className="size-6" aria-hidden="true" /></span>}
     </Link>
   );
 }
 
 function Header() {
   const [open, setOpen] = useState(false);
+  const settings = useSiteSettings();
+  const number = settings.whatsapp || "19982497244";
+  const whatsapp = whatsappHref(number);
 
   return (
     <header className="sticky top-4 z-50 max-w-6xl mx-auto px-6">
@@ -62,9 +59,7 @@ function Header() {
         </div>
         <div className="flex items-center gap-2">
           <ExternalLink
-            href={WHATSAPP_URL}
-            fallbackHint={`Adicione ${WHATSAPP_NUMBER} e chame no WhatsApp.`}
-            copyOnBlock={WHATSAPP_NUMBER}
+            href={whatsapp} fallbackHint={`Adicione ${number} e chame no WhatsApp.`} copyOnBlock={number}
             className="hidden sm:inline-flex px-4 py-2 rounded-xl bg-foreground text-background text-sm font-semibold hover:bg-primary transition-colors"
           >
             Orçamento
@@ -99,27 +94,28 @@ function Header() {
 }
 
 function Footer() {
+  const settings = useSiteSettings();
+  const number = settings.whatsapp || "19982497244";
+  const whatsapp = whatsappHref(number);
   return (
     <footer className="max-w-6xl mx-auto px-6 pb-10 mt-4">
       <div className="frost rounded-2xl px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
-        <span>© 2026 TecnoFix — Manutenção de Computadores</span>
+        <span>© 2026 {settings.siteName || "Digital Fix Zone"}</span>
         <div className="flex gap-5 font-medium">
           <ExternalLink
-            href={WHATSAPP_URL}
-            fallbackHint={`Adicione ${WHATSAPP_NUMBER} e chame no WhatsApp.`}
-            copyOnBlock={WHATSAPP_NUMBER}
+            href={whatsapp} fallbackHint={`Adicione ${number} e chame no WhatsApp.`} copyOnBlock={number}
             className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"
           >
             <MessageCircle className="size-4" /> WhatsApp
           </ExternalLink>
           <ExternalLink
-            href={INSTAGRAM_URL}
+            href={settings.instagram || "https://instagram.com/tecno.fix"}
             className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"
           >
             <Instagram className="size-4" /> Instagram
           </ExternalLink>
           <ExternalLink
-            href={FACEBOOK_URL}
+            href={settings.facebook || "https://facebook.com/TecnoFix"}
             className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors"
           >
             <Facebook className="size-4" /> Facebook

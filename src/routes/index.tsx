@@ -2,12 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { MessageCircle, Instagram, Facebook } from "lucide-react";
 import heroImage from "@/assets/hero-workbench.jpg";
 import { ExternalLink } from "@/components/external-link";
-import {
-  WHATSAPP_URL,
-  WHATSAPP_NUMBER,
-  INSTAGRAM_URL,
-  FACEBOOK_URL,
-} from "@/lib/contact";
+import { useSiteSettings, whatsappHref } from "@/lib/site-settings";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -57,6 +52,9 @@ const STATS = [
 ];
 
 function HomePage() {
+  const settings = useSiteSettings();
+  const number = settings.whatsapp || "19982497244";
+  const whatsapp = whatsappHref(number);
   return (
     <div className="max-w-6xl mx-auto px-6">
       {/* Hero */}
@@ -75,9 +73,7 @@ function HomePage() {
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <ExternalLink
-              href={WHATSAPP_URL}
-              fallbackHint={`Adicione ${WHATSAPP_NUMBER} e chame no WhatsApp.`}
-              copyOnBlock={WHATSAPP_NUMBER}
+              href={whatsapp} fallbackHint={`Adicione ${number} e chame no WhatsApp.`} copyOnBlock={number}
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-primary text-primary-foreground font-semibold shadow-xl shadow-primary/25 hover:bg-primary/90 transition"
             >
               <MessageCircle className="size-5" /> Falar no WhatsApp
@@ -102,7 +98,7 @@ function HomePage() {
         </div>
         <div className="frost rounded-3xl p-4">
           <img
-            src={heroImage}
+            src={settings.heroImageUrl || heroImage}
             alt="Bancada de manutenção de computadores com ferramentas e memórias RAM"
             className="w-full aspect-[4/5] object-cover rounded-2xl"
             width={1024}
@@ -224,21 +220,19 @@ function HomePage() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <ExternalLink
-                href={WHATSAPP_URL}
-                fallbackHint={`Adicione ${WHATSAPP_NUMBER} e chame no WhatsApp.`}
-                copyOnBlock={WHATSAPP_NUMBER}
+                href={whatsapp} fallbackHint={`Adicione ${number} e chame no WhatsApp.`} copyOnBlock={number}
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/25 hover:bg-primary/90 transition"
               >
-                <MessageCircle className="size-4" /> WhatsApp 19 98249-7244
+                <MessageCircle className="size-4" /> WhatsApp {number}
               </ExternalLink>
               <ExternalLink
-                href={INSTAGRAM_URL}
+                href={settings.instagram || "https://instagram.com/tecno.fix"}
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl frost font-semibold text-foreground hover:bg-white/80 transition"
               >
                 <Instagram className="size-4" /> Instagram
               </ExternalLink>
               <ExternalLink
-                href={FACEBOOK_URL}
+                href={settings.facebook || "https://facebook.com/TecnoFix"}
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl frost font-semibold text-foreground hover:bg-white/80 transition"
               >
                 <Facebook className="size-4" /> Facebook
