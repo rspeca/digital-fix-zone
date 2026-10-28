@@ -10,36 +10,36 @@ type FakeOptions = {
   topThrows?: boolean;
 };
 
-function fakeWindow({ popup, isTop = false, topThrows = false }: FakeOptions): {
-  win: ExternalWindow;
-  ownHref: () => string;
-  topHref: () => string;
-} {
+function fakeWindow({ popup, isTop = false, topThrows = false }: FakeOptions) {
   const own = { href: "http://localhost:8080/" };
-  const topLoc = {
-    href: "http://preview.example/",
-    set href(_value: string) {
-      if (topThrows) throw new Error("SecurityError: top navigation blocked");
-      topLoc.href = LINK;
-    },
+  const topState = { href: "http://preview.example/" };
+
+  const topLocation = {
     get href() {
-      return own.href;
+      return topState.href;
+    },
+    set href(value: string) {
+      if (topThrows) throw new Error("SecurityError: top navigation blocked");
+      topState.href = value;
     },
   };
+
   const top: ExternalWindow = {
     open: () => null,
     top: null,
-    location: topLoc,
+    location: topLocation,
   };
+
   const win: ExternalWindow = {
     open: vi.fn(() => popup),
     top: isTop ? null : top,
     location: own,
   };
+
   return {
     win,
     ownHref: () => own.href,
-    topHref: () => (topThrows ? "blocked" : topLoc.href),
+    topHref: () => topState.href,
   };
 }
 
